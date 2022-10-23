@@ -26,6 +26,8 @@ namespace EMS.Repo
                     Salary = obj.Salary,
                     DetID = obj.DetID
                 };
+
+
                 context.Employee.Add(emp);
                 context.SaveChanges();
                 return emp.EID;
@@ -65,7 +67,29 @@ namespace EMS.Repo
                         Email = x.Email,
                         Phone = x.Phone,
                         Salary = x.Salary,
-                        DetID = x.DetID
+                        DetID = x.DetID,
+                        DepartmentName = x.Department.Name
+                    }).FirstOrDefault();
+
+                return result;
+            }
+        }
+
+        public EmployeeDomain GetEmployeebyEmail(string email)
+        {
+            using (var context = new EMSEntities())
+            {
+                var result = context.Employee
+                    .Where(x => x.Email == email)
+                    .Select(x => new EmployeeDomain()
+                    {
+                        EID = x.EID,
+                        Name = x.Name,
+                        Email = x.Email,
+                        Phone = x.Phone,
+                        Salary = x.Salary,
+                        DetID = x.DetID,
+                        DepartmentName = x.Department.Name
                     }).FirstOrDefault();
 
                 return result;

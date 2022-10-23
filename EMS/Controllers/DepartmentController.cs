@@ -8,10 +8,12 @@ using System.Web.Mvc;
 
 namespace EMS.Controllers
 {
+    
     public class DepartmentController : Controller
     {
         DepartmentServices dpt = new DepartmentServices();
         // GET: Department
+        [Authorize(Roles = "Admin")]
         public ActionResult Dpt()
         {
             var result = dpt.ShowAllDpt();
@@ -19,6 +21,8 @@ namespace EMS.Controllers
         }
 
         // GET: Department/Details/5
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Details(int id)
         {
             var result = dpt.GetDptById(id);
@@ -26,6 +30,8 @@ namespace EMS.Controllers
         }
 
         // GET: Department/Create
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Create()
         {
             
@@ -33,6 +39,8 @@ namespace EMS.Controllers
         }
 
         // POST: Department/Create
+        [Authorize(Roles = "Admin")]
+
         [HttpPost]
         public ActionResult Create(DepartmentDomain obj)
         {
@@ -49,6 +57,8 @@ namespace EMS.Controllers
         }
 
         // GET: Department/Edit/5
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Edit(int id)
         {
             var result = dpt.GetDptById(id);
@@ -56,6 +66,7 @@ namespace EMS.Controllers
         }
 
         // POST: Department/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(DepartmentDomain obj)
         {
@@ -72,7 +83,7 @@ namespace EMS.Controllers
         }
 
         // GET: Department/Delete/5
-  
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var result = dpt.DeleteDepartment(id);
@@ -84,6 +95,7 @@ namespace EMS.Controllers
             return View("Dpt");
             
         }
+  
 
         
         
